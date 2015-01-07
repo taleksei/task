@@ -11,17 +11,18 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  # The following optional lines are part of the advanced setup.
+  gem 'guard-rspec'
+end
+
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# Тестовые гемы для Windows
+group :test do
+  gem 'capybara'
+  gem 'rb-fchange'
+  gem 'rb-notifu'
+end
 
