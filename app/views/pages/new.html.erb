@@ -1,2 +1,20 @@
-<h1>Pages#new</h1>
-<p>Find me in app/views/pages/new.html.erb</p>
+<% provide(:title, 'Add page') %>
+<h1>Новая страница</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@page) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+
+        <%= f.label :content %>
+        <%= f.text_field :content %>
+    <% end %>
+  </div>
+
+</div>
