@@ -1,19 +1,20 @@
 class PagesController < ApplicationController
 
   def index
-
+    @pages = Page.all
   end
 
   def show
-
+    @page = Page.find(params[:id])
+    @current_page = @page
   end
 
   def new
     @page = Page.new
   end
 
-  def add
-    @page = Page.new(page_params)
+  def create
+    @page = Page.new(params[:page])
     if @page.save
       flash[:success] = "Cтраница добавлена успешно!"
       redirect_to @page
@@ -23,10 +24,12 @@ class PagesController < ApplicationController
   end
 
   def edit
+    @page = Page.find_by_id(params[:id])
   end
 
   def update
-    if @page.update_attributes(page_params)
+    @page = Page.find_by_id(params[:id])
+    if @page.update_attributes(params[:page])
       flash[:success] = "Страница изменена"
       redirect_to @page
     else
@@ -34,9 +37,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def destroy
+
+  end
+
   private
 
-  def page_params
-    params.require(:page).permit(:name, :title, :content, :parent_id)
-  end
 end
