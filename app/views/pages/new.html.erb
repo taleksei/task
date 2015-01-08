@@ -1,22 +1,6 @@
 <% provide(:title, 'Add page') %>
 <h1>Новая страница</h1>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@page) do |f| %>
-        <%= render 'shared/error_messages' %>
+<%= render @page.parent if @page.parent %>
 
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-
-        <%= f.label :title %>
-        <%= f.text_field :title %>
-
-        <%= f.label :content %>
-        <%= f.text_field :content %>
-
-        <%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
-
-</div>
+<%= render "form" %>

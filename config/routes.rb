@@ -1,7 +1,12 @@
 Task::Application.routes.draw do
-  resources :pages
 
-  match '/add_page',  to: 'pages#new',              via: 'get'
+  resources :pages
+  resources :root_page, only: [ :add ]
+
+  root :to => 'pages#index'
+  match '/add',  to: 'pages#new',              via: 'get'
+  match '/edit',  to: 'pages#edit',              via: 'get'
+  #match '/add_page',  to: 'pages#new',              via: 'get'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

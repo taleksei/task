@@ -1,5 +1,6 @@
 <li>
-  <%= page.name %>
-  <%= page.title %>
-  <%= page.content %>  
+  <%= link_to page.title, page %>
+
+  <%= link_to "Создать подстраницу", new_page_path(:parent_id => page) %> |
+  <%= link_to "Редактировать", edit_page_path(page) %>
 </li>

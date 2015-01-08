@@ -1,7 +1,7 @@
 <% provide(:title, 'All pages') %>
-<h1>все страницы</h1>
+<h1>Все страницы</h1>
 
 <ul class="pages">
-  <%= render @pages %>
-  <%= link_to "Создать страницу", add_page_path, class: "btn btn-large btn-primary" %>
+  <%= nested_pages @pages.arrange(:order => :id) %>
+  <%= link_to "Создать страницу", add_path, class: "btn btn-large btn-primary" %>
 </ul>
