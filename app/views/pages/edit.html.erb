@@ -1,4 +1,18 @@
-<% provide(:title, 'Edit page') %>
+<% provide(:title, 'Редактирование страницы') %>
 <h1>Редактирование страницы </h1>
 
-<%= render "form" %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@page) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        <%= f.label 'Заголовок' %>
+        <%= f.text_field :title %>
+
+        <%= f.label 'Содержание' %>
+        <%= f.text_area :content, :rows => 5 %>
+
+        <%= f.submit "Сохранить", class: "btn btn-small btn-primary" %>
+    <% end %>
+  </div>
+</div>

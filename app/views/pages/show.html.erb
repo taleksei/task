@@ -1,12 +1,23 @@
 <% provide(:title, @page.title) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= @page.title %>
-      </h1>
-    </section>
-  </aside>
-</div>
+<h1><%= @page.title %></h1>
 
-<%= nested_pages @page.root.subtree.arrange(:order => :id) %>
+<%= nested_pages @page.subtree.arrange(:order => :id) %>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@page) do |f| %>
+        <!--%= f.label 'Имя' %-->
+        <!--%= f.text_field :name,:readonly => true %-->
+
+        <%= f.label 'Заголовок' %>
+        <%= f.text_field :title,:readonly => true %>
+
+        <%= f.label 'Содержание' %>
+        <%= @page.content.html_safe %>
+
+    <% end %>
+  </div>
+</div>
+<%= link_to "Создать подстраницу",   root_url + @page.slug + '/add', class: "btn btn-small btn-primary" %>
+<%= link_to "Редактировать", root_url + @page.slug + '/edit', class: "btn btn-small btn-primary" %>
+

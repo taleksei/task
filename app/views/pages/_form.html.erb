@@ -2,17 +2,16 @@
   <div class="span6 offset3">
     <%= form_for(@page) do |f| %>
         <%= render 'shared/error_messages' %>
+        <%= f.hidden_field :ancestry if @page.parent %>
 
-        <%= f.hidden_field :ancestry %>
+        <%= f.label 'Имя' %>
+        <%= f.text_field :name  %>
 
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-
-        <%= f.label :title %>
+        <%= f.label 'Заголовок' %>
         <%= f.text_field :title %>
 
-        <%= f.label :content %>
-        <%= f.text_field :content %>
+        <%= f.label 'Содержание' %>
+        <%= f.text_area :content, :rows => 5 %>
 
         <%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
     <% end %>

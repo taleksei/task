@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>title</title>
+  <title>Path 1</title>
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css">
   <!-- Optional theme -->
   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap-theme.min.css">
@@ -18,7 +18,7 @@
   <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
-  <%= yield %>
+      <%= yield %>
   <%= render 'layouts/footer' %>
   <%= debug(params) if Rails.env.development? %>
 </div>

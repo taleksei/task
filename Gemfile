@@ -12,6 +12,7 @@ gem 'jquery-rails', '>=0'
 gem 'jbuilder', '1.0.2'
 gem 'ancestry'
 gem 'friendly_id'
+gem 'russian', '~> 0.6.0'
 
 group :development, :test do
   gem 'rspec-rails'
