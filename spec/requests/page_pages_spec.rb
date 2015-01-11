@@ -1,4 +1,7 @@
+#!/bin/env ruby
+# encoding: utf-8
 require 'spec_helper'
+require 'capybara'
 
 describe "Page requests" do
   include Rails.application.routes.url_helpers
@@ -6,10 +9,7 @@ describe "Page requests" do
   subject { page }
 
   describe "index" do
-    let(:page) { FactoryGirl.create(:page) }
-    before(:each) do
-      visit pages_path
-    end
+    before { visit pages_path() }
 
     it { should have_title('Path 1') }
     it { should have_content('Все страницы') }
@@ -17,17 +17,24 @@ describe "Page requests" do
   end
 
   describe "new page" do
-    before { visit 'add' }
+    before { visit new_page_path(:parent_id => nil) }
 
     it { should have_content('Новая страница') }
-    it { should have_link('Сохранить') }
+    it { should have_content("Заголовок") }
+    it { should have_content("Содержание") }
+    it { should have_button('Сохранить') }
   end
 
   describe "new page" do
 
-    before { visit 'add' }
+    before { visit new_page_path(:parent_id => nil) }
 
     let(:submit) { "Сохранить" }
+
+    it { should have_content('Новая страница') }
+    it { should have_content("Заголовок") }
+    it { should have_content("Содержание") }
+    it { should have_button('Сохранить') }
 
     describe "with invalid information" do
       it "should not create a page" do
@@ -37,9 +44,9 @@ describe "Page requests" do
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "RootPage1"
-        fill_in "Title",        with: "Главная страница"
-        fill_in "Content",     with: "Содержание"
+        fill_in "page_name",         with: "RootPage1"
+        fill_in "page_title",        with: "Главная страница"
+        fill_in "page_content",     with: "Содержание"
       end
 
       it "should create a page" do
@@ -57,14 +64,16 @@ describe "Page requests" do
   end
 
   describe "edit" do
-    let(:page) { FactoryGirl.create(:page) }
-    before { visit edit_page_path(page) }
+    let(:page) { Page.find(page.id) }
+    before {
+      visit edit_page_path(page)
+    }
 
     describe "page" do
       it { should have_content("Заголовок") }
       it { should have_content("Содержание") }
       it { should have_selector('h1', text: 'Главная страница') }
-      it { should have_link('Сохранить') }
+      it { should have_button('Сохранить') }
     end
 
     describe "with valid information" do
@@ -81,4 +90,5 @@ describe "Page requests" do
       it { should have_link('Редактировать') }
     end
   end
+
 end

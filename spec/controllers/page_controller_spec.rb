@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe PageController do
+describe PagesController do
 
-  describe "GET 'add'" do
+  describe "GET 'new'" do
     it "returns http success" do
-      get 'add'
+      get 'new'
       response.should be_success
     end
   end
