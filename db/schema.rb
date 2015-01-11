@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20150108165103) do
     t.integer  "parent_id"
     t.string   "ancestry"
     t.string   "slug"
-    t.integer  "ancestry_depth", :default => 0
   end
 
   add_index "pages", ["ancestry"], :name => "index_pages_on_ancestry"

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RootPageController do
+describe PageController do
 
   describe "GET 'add'" do
     it "returns http success" do

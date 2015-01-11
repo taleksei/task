@@ -25,5 +25,6 @@ group :test do
   gem 'capybara'
   gem 'rb-fchange'
   gem 'rb-notifu'
+  gem 'factory_girl_rails'
 end
 
