@@ -2,17 +2,20 @@
 # encoding: utf-8
 class Page < ActiveRecord::Base
 
+  #для создания иерархической структуры страниц
   has_ancestry
 
   VALID_NAME_REGEX = /\A[a-zA-Zа-яА-Я0-9_]*\z/i
   validates :name, presence: true, format: { with: VALID_NAME_REGEX }, length: { maximum: 50, minimum: 1 }
   validates :title, presence:  true, length: { maximum: 50, minimum: 1 }
 
+  #для дружественного url. Создается поле slug, в котором хранится "псевдоним"
   extend FriendlyId
   friendly_id :name, use: :slugged
 
   validates :slug, uniqueness: true, presence: true
 
+  #Создает "псевдоним".
   def normalize_friendly_id(value)
     name_as_slug = Russian.translit(value).parameterize
     return if name_as_slug == slug.split('/').last  if !slug.blank?

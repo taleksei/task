@@ -6,10 +6,12 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
+    #только для отображения содержимого поля content ввиде HTML-разметки
     @page.content = to_show(@page.content)
   end
 
   def new
+    #присвоение parent_id необходимо для создания иерархической структуры страниц
     @page = Page.new(:parent_id => params[:id])
   end
 
@@ -40,6 +42,7 @@ class PagesController < ApplicationController
 
   end
 
+  #преобразование служебных символов к HTML-разметке
   def to_show(content)
     content.gsub(/\\\\([^\\]+)\\\\/, '<b>\1</b>').gsub(/\*\*([^\*]+)\*\*/, '<i>\1</i>')
         .gsub(/\(\((\S*)\s+([^\)]+)\)\)/, '<a href="'+root_url+'\1">\2</a>')
